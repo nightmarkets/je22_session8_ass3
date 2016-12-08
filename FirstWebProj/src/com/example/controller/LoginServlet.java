@@ -28,17 +28,16 @@ public class LoginServlet extends HttpServlet {
 		
 		if(user.equals("tom")&&pass.equals("tom123"))
 		{
-			
 			HttpSession session = req.getSession(true);
 			session.setAttribute("userName2", user);
 			
 			Cookie c1 = new Cookie("userNameC", user);
-			c1.setMaxAge(60*60*24);
+			c1.setMaxAge(60*60*24*365);
 			c1.setHttpOnly(true);
 			res.addCookie(c1);
 			
 			Cookie c2 = new Cookie("passWordC", pass);
-			c2.setMaxAge(60*60*24);
+			c2.setMaxAge(60*60*24*365);
 			c2.setHttpOnly(true);
 			res.addCookie(c2);
 			

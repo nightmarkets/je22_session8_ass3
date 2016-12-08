@@ -2,6 +2,10 @@ package com.example.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,10 +49,12 @@ public class SessionTracker extends HttpServlet {
 			out.println("old session. visitCount="+visitCount);
 		}
 		
-			
+		Date CreationTime = new Date(session.getCreationTime());
+		Date LastAccessedTime = new Date (session.getLastAccessedTime());
+		
 		out.println("SessionID :"+session.getId());
-		out.println("Create Time:" + session.getCreationTime());
-		out.println("Last Access Time:"+session.getLastAccessedTime());
+		out.println("Create Time:" + CreationTime);
+		out.println("Last Access Time:"+LastAccessedTime);
 		out.println("User ID:"+session.getAttribute(userKey));
 		out.println("Number of visits: "+ visitCount);
 		
@@ -64,15 +70,15 @@ public class SessionTracker extends HttpServlet {
 	                "<tr bgcolor=\"#949494\">\n" +
 	                "  <th>Session info</th><th>value</th></tr>\n" +
 	                "<tr>\n" +
-	                "  <td>id</td>\n" +
+	                "  <td>JSessionID</td>\n" +
 	                "  <td>" + session.getId() + "</td></tr>\n" +
 	                "<tr>\n" +
 	                "  <td>Creation Time</td>\n" +
-	                "  <td>" + session.getCreationTime() + 
+	                "  <td>" + CreationTime + 
 	                "  </td></tr>\n" +
 	                "<tr>\n" +
 	                "  <td>Time of Last Access</td>\n" +
-	                "  <td>" + session.getLastAccessedTime() + 
+	                "  <td>" + LastAccessedTime + 
 	                "  </td></tr>\n" +
 	                "<tr>\n" +
 	                "  <td>User ID</td>\n" +
